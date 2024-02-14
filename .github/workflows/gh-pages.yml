@@ -1,5 +1,5 @@
 name: Deploy to Pages
-on:  
+on:
   push:
     branches: ["main"]
   workflow_dispatch:
@@ -22,20 +22,20 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3.0.0          
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
       - name: Install deps
-        run: pnpm install
+        run: bun install
       - name: Build site
-        run: pnpm run build
+        run: bun run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with:          
-          path: './build'
+        with:
+          path: "./build"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

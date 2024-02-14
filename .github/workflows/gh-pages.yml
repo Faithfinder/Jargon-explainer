@@ -24,10 +24,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
       - name: Setup Bun
         uses: pnpm/action-setup@v3
-      - name: Install deps
-        run: pnpm install
+        with:
+          version: 8
+          run_install: true
       - name: Build site
         run: pnpm run build
       - name: Setup Pages

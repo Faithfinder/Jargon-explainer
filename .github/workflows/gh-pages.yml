@@ -22,14 +22,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3.0.0          
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install deps
-        run: bun install
+        run: pnpm install
       - name: Build site
-        run: bun run build
+        run: pnpm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
